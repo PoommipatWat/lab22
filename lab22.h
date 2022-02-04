@@ -22,14 +22,15 @@ class Unit{
 		int beAttacked(int);
 		int heal();	
 		void guard();
-		bool isDead();	
+		bool isDead();
+		int showhp();
 };
 
 void Unit::create(string t){ 
 	if(t == "Hero"){
 		type = "Hero";
 		cout << "Please input your name: ";
-		getline(cin,name);
+		name = "poom";
 		hpmax = rand()%20+90;
 		atk = rand()%5+14;
 		def = rand()%3+9;
@@ -64,12 +65,46 @@ void Unit::newTurn(){
 }
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////
-//Write function members isDead(), guard(), heal(), beAttacked(), and attack() here//
+bool Unit::isDead(){
+	if(hp <= 0) return true;
+	else return false;
+}
+
+void Unit::guard(){
+	guard_on = true;
+}
+
+int Unit::beAttacked(int oppatk){
+	if (guard_on){
+		hp -= (oppatk-def)/3;
+		return (oppatk-def)/3;
+	}
+	else{
+		hp -= oppatk-def;
+		return oppatk-def;
+	}
+}
+
+int Unit::attack(Unit &TypeChar){
+	return TypeChar.beAttacked(atk);
+}
+
+int Unit::heal(){
+	int MyHeal = rand()%21 + 10;
+	hp += MyHeal;
+	if (hp > hpmax){
+		int re = MyHeal-(hp-hpmax);
+		hp = hpmax;
+		return re;
+	}
+	else return MyHeal;
+}
+
+int Unit::showhp(){
+	return hp;
+}
 /////////////////////////////////////////////////////////////////////////////////////
-
-
 
 void drawScene(char p_action,int p,char m_action,int m){
 	cout << "                                                       \n";
