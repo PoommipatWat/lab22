@@ -16,8 +16,7 @@ int main(){
 		hero.showStatus();		
 		cout << "[A] Attack [H] Heal [G] Guard [E] Exit";
 		cout << "\n[Turn " << turn_count << "] Enter your action: ";
-		if (hero.showhp()>=70) player_action = 'A';
-		else player_action = 'H';
+		cin >> player_action;
 		player_action = toupper(player_action);
 		if(player_action == 'E') break; 
 		
