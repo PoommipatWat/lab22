@@ -1,4 +1,4 @@
-// Please include header (lab22.h) here.
+#include "lab22.h"
 
 int main(){
 	srand(time(0));
@@ -16,7 +16,8 @@ int main(){
 		hero.showStatus();		
 		cout << "[A] Attack [H] Heal [G] Guard [E] Exit";
 		cout << "\n[Turn " << turn_count << "] Enter your action: ";
-		cin >> player_action;
+		if (hero.showhp()>=70) player_action = 'A';
+		else player_action = 'H';
 		player_action = toupper(player_action);
 		if(player_action == 'E') break; 
 		
@@ -48,3 +49,4 @@ int main(){
 	}
 	return 0;
 }
+
